@@ -1,26 +1,28 @@
 import React from 'react'; //React is coming from node modules
 import ReactDOM from 'react-dom/client';
-/**
- * <div id="parent">
- *  <div id="child1">
- *    <h1>I am h1 tag</h1>
- *    <h2>I am h2 tag</h2>
- *  </div>
- *  <div id="child2">
- *    <h1>I am h1 tag</h1>
- *    <h2>I am h2 tag</h2>
- *  </div>
- * </div>
- */
-// Below is so sumbersome, use JSX
-const parent = React.createElement("div", {id: "parent"}, 
-  [React.createElement("div", {id: "child1"}, 
-    [React.createElement("h1", {}, "This is Namaste React"), React.createElement("h2", {}, "I am h2 tag")]
-  ),
-  React.createElement("div", {id: "child2"}, 
-    [React.createElement("h1", {}, "I am h1 tag"), React.createElement("h2", {}, "I am h2 tag")]
-  )])
-// const heading = React.createElement("h1",  {id: "heading"}, "Hello world from React!");
-// console.debug(heading);
+
+// React.createElement is not a good way to create elements, syntax is bad
+// To help the developer community, FB devs created JSX 
+
+const JSXHeading = () => (
+  <h1 id="heading" className="heading-class" tabIndex="5">
+    Namaste React         
+  </h1>
+);
+
+// Functional component -> a function that returns a react element
+const HeadingComponent = () => {
+  return (
+    <div class="container">
+      {JSXHeading()}
+      <JSXHeading />
+      <h1 id="heading" className="heading-class" tabIndex="5">
+        Namaste React  2       
+      </h1>
+    </div>
+  );
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+// root.render(jsxHeading);
+root.render(<HeadingComponent />);
